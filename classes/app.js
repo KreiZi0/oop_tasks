@@ -12,6 +12,8 @@ form.addEventListener("submit", addTask);
 const clearBtn = document.querySelector('#clear-tasks');
 clearBtn.addEventListener('click', deleteTasks);
 
+document.addEventListener('DOMContentLoaded', getTasks);
+
 function addTask(e){
 	const task = new Task(taskInput.value);
 	ui.addTask(task)
@@ -30,4 +32,9 @@ function deleteTasks(e){
 	let tasks = document.querySelector('ul');
 	ui.deleteTasks(tasks);
 	ls.deleteTasks();
+}
+
+function getTasks(e){
+	tasks = ls.getData('tasks');
+	ui.getTasks(tasks);
 }
