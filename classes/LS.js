@@ -1,13 +1,23 @@
-class LS {
-	addTask(task){
-		let tasks;
-		if(localStorage.getItem('tasks') === null){
-			tasks = [];
+class LS{
+	getData(name){
+		let data;
+		if(localStorage.getItem(name) === null){
+			data = [];
 		} else {
-			tasks = JSON.parse(localStorage.getItem('tasks'));
+			data = JSON.parse(localStorage.getItem(name));
 		}
-		tasks.push(task);
-		localStorage.setItem('tasks', JSON.stringify(tasks));
-		tasks.addedToLS();
+		return data
 	}
+
+	setData(name, data){
+		localStorage.setItem(name, JSON.stringify(data));
+	}
+
+	addTask(task){
+		let tasks = this.getData('tasks');
+		tasks.push(task);
+		this.setData('tasks', tasks);
+		task.addedToLS();
+	}
+
 }
